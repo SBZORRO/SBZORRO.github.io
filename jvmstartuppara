@@ -1,1 +1,6 @@
 -XX:+HeapDumpOnOutOfMemoryError
+-XX:MaxDirectMemorySize
+-Xss
+-Xms
+-Xmx
+-Xmn
