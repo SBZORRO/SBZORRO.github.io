@@ -1,0 +1,44 @@
+用native code就不说了， 当调用次数达到一定的阀值的时候，sun jdk 会使用
+
+MethodAccessorGenerator.generate 生成一个虚拟的class, GeneratedMethodAccessor1,2...之类
+
+ 
+
+ 
+
+你可以在启动参数里 使用  XX:+TraceClassLoading， 可以看到 load 的虚拟的class
+
+ 
+
+ 
+
+ 从理论上来说，这样的调用等于是生成新的class,直接调用具体的类的方法，性能应该和直接调用的方法接近，或者类似，除了方法调用的入栈和出栈，当然当用hotspot编译运行的时候的，内联可以解决这样的问题。
+
+结果却让人吃惊
+
+ 
+
+在用类反射调用的时候100万次需要3秒，而直接调用却只要10毫秒。
+
+ 
+
+有人说，因为是method的调用，涉及到method的quickCheckMemberAccess，ensureMemberAccess检查，这个你可以通过设置method.setAccessor(true) 绕过成员检查。
+
+ 
+
+主要的原因是： 因为接口的通用性，java 的invoke 方法 是传object, 和object[] 数组的。
+
+也就是如果是简单类型的话，在接口处必须封装成object, 例如 long ,在javac compile的时候 用了Long.valueOf() 转型
+
+那也就是大量了生成了Long 的object, 同时 传入的参数是Object[]数值,那还需要额外封装object数组。
+
+ 
+
+在调用的时候，产生了额外的不必要的内存浪费，当调用次数达到一定量的时候，最终还导致了GC。
+
+ 
+
+接口的通用性在对性能要求不高的系统里通用性非常高，但在对性能要求高的系统里简直就是灾难。
+————————————————
+版权声明：本文为CSDN博主「raintungli」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/raintungli/article/details/6286701
