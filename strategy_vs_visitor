@@ -20,3 +20,39 @@ If I switch to the visitor pattern, I do not have to duplicate the strategy clas
 MpegCompression::compressVideo(Video object)    
 MpegCompression::compressAudio(Audio object)
 
+
+
+
+A Strategy pattern is used to expose various algorithms to a standardized interface. 
+A typical example could be a sort utility that would let the user (programmer) choose between various sort algorithms each called via the same interface.
+
+A Visitor pattern lives at a different level. 
+It details a mechanism with which objects can accept a reference to another object (the visitor) which exposes a predetermined interface that the target object can call upon itself. 
+Of course, different visitors would present the same interface but have different implementations.
+
+Coming back to our example, a collection of sort algorithms could be implemented either via the Strategy pattern or via the Visitor pattern.
+
+With the Strategy method, each algorithm presents the same interface and takes arrays of target objects as parameters for example. 
+With the Visitor pattern, it would be the target array that takes the "visiting" algorithm as a parameter. In this case, the target would "accept()" the selected visitor and call its "visit()" method upon invocation of the target's sort method in our example.
+
+
+
+
+
+
+obj 1->* strategy
+eg: java.util.Comparator
+
+obj *->* visitor
+
+
+
+
+The visitor is like a one-night stand - you create it when you call the accept function and then they get separated and the visitor can be cleaned from the memory, it doesn't take any room for the class that use it.
+
+The strategy is like a marriage - you create the object, it lives in the class that uses it, takes memory, has a room and makes itself a coffee in the morning :) . Of course they can get a divorce and switch to another class but that class would also live in its owner's context.
+
+
+
+
+
