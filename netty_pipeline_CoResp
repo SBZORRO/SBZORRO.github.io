@@ -1,0 +1,4 @@
+DefaultChannelHandlerContext(AbstractChannelHandlerContext).fireChannelRead(obj)
+AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext, obj)
+DefaultChannelHandlerContext(AbstractChannelHandlerContext).invokeChannelRead(obj)
+
