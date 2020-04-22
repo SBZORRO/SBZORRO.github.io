@@ -1,0 +1,11 @@
+eg: map menu key to ctrl
+
+vim /usr/share/X11/xkb/symbols/pc
+
+Before:
+key <MENU> {  [ Menu ] };             
+modifier_map Control{ Control_L, Control_R };       
+
+After:
+key <MENU> {  [ Control_R ] };             
+modifier_map Control{ Control_L, Control_R,<MENU> };                    
