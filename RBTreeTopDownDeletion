@@ -1,4 +1,0 @@
-Let p ==/= RED, X Will always end up with RED.
-Thus, in the next loop or recursion, p will always be RED!!!
-
-Recursion!!!

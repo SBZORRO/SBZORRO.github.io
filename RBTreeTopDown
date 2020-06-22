@@ -1,0 +1,15 @@
+Insertion:
+Color flip: 
+    x,B             x,R
+  /   \     =>     /   \
+c1,R  c2,R      c1,B    c2,B
+IF x.parent is also RED, apply Zig/Zig-Zag!!!
+
+
+Zig/Zig-Zag: old root => RED; new root => BLACK
+
+Deletion:
+Let p ==/= RED, X Will always end up with RED.
+Thus, in the next loop or recursion, p will always be RED!!!
+
+Recursion!!!
