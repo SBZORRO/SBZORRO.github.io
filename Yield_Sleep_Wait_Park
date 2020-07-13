@@ -1,0 +1,16 @@
+detail: https://www.yangxf.top/14/
+
+yield -> os::yield() -> sched_yield
+
+Sleep -> os::sleep() -> os::PlatformEvent::park(jlong millis) -> os::Linux::safe_cond_timedwait(_cond, _mutex, &abst);
+
+Obj.wait() -> JVM_MonitorWait -> ObjectSynchronizer::wait(obj, ms, CHECK) -> monitor->wait(millis, true, THREAD) -> Self->_ParkEvent->park (millis) ; // 3. 等待，和Thread::sleep一样的
+
+LockSupport.park -> thread->parker()->park(isAbsolute != 0, time) -> os::Linux::safe_cond_timedwait (&_cond[_cur_index], _mutex, &absTime) -> pthread_cond_wait (&_cond[_cur_index], _mutex) / os::Linux::safe_cond_timedwait (&_cond[_cur_index], _mutex, &absTime)
+
+
+park(...) works directly on the thread. It takes the thread as a parameter and puts it to sleep until unpark is called on the thread, unless unpark has already been called.
+It's supposed to be faster than Object.wait(), which operates on the monitor abstraction if you know which thread you need to block/unblock.
+
+current thread -> wait;
+chasing thread -> park;
