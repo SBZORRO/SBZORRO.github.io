@@ -1,0 +1,20 @@
+If x and y are actions of the same thread and x comes before y in program order, then hb(x, y).
+
+There is a happens-before edge from the end of a constructor of an object to the start of a finalizer (§12.6) for that object.
+
+If an action x synchronizes-with a following action y, then we also have hb(x, y).
+
+If hb(x, y) and hb(y, z), then hb(x, z).
+
+
+
+
+An unlock on a monitor happens-before every subsequent lock on that monitor.
+
+A write to a volatile field (§8.3.1.4) happens-before every subsequent read of that field.
+
+A call to start() on a thread happens-before any actions in the started thread.
+
+All actions in a thread happen-before any other thread successfully returns from a join() on that thread.
+
+The default initialization of any object happens-before any other actions (other than default-writes) of a program.
