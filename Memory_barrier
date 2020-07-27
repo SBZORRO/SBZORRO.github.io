@@ -1,0 +1,1 @@
+a Fence, that guarantees that all loads and stores initiated before the fence will be strictly ordered before any load or store initiated after the fence. 
