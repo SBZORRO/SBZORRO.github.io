@@ -1,15 +1,74 @@
 Insertion:
-Color flip: 
-    x,B             x,R
-  /   \     =>     /   \
-c1,R  c2,R      c1,B    c2,B
-IF x.parent is also RED, apply Zig/Zig-Zag!!!
+1.
+    Color flip: 
+        x,B             x,R
+      /   \     =>     /   \
+    c1,R  c2,R      c1,B    c2,B
+    
+    IF x.parent is also RED, apply Zig/Zig-Zag!!!
 
+    Rotate flipped subtree's parent with grandparent.
 
-Zig/Zig-Zag: old root => RED; new root => BLACK
+    Zig/Zig-Zag: old root => RED; new root => BLACK
 
+2.
+    Zig rotation and zig-zag rotation work if S is BLACK
+                    G,B             P,B
+                  /   \     =>     /   \
+                P,R   S,B        X,R   G,R
+                /  \                   /  \
+              X,R   B                 B   S,B
+              
+                    G,B              X,B
+                  /   \     =>     /    \
+                P,R   S,B        P,R    G,R
+                /  \             / \     /  \
+              A    X,R          A   B1  B2   S,B 
+                   / \
+                  B1  B2
+                   
+                   
 Deletion:
 Let p ==/= RED, X Will always end up with RED.
 Thus, in the next loop or recursion, p will always be RED!!!
 
 Recursion!!!
+
+1.
+    X has two BLACK children:
+    
+        T has two BLACK children:
+            P,R            P,B
+          /   \     =>     /   \
+        X,B   T,B        X,R   T,R
+
+        T has Right RED children:
+            P,R                   R,R
+          /   \     =>         /        \
+        X,B   T,B            P,B        T,B
+              / \           /  \        / \
+            R,R  C2       X,R   R1    R2   C2
+            / \
+          R1   R2
+          
+        T has Left RED children:
+           P,R                   T,R
+          /   \     =>         /        \
+        X,B   T,B            P,B        R,B
+              /  \           /  \        / \
+             C1   R,R      X,R  C1    R1   R2
+                  / \
+                 R1  R2
+
+2.
+    X has one Red children:
+        go on
+        if next x == RED; go on
+        if next x == BLACK; Zig T and P, then recolor
+            P,B                T,B
+           /  \       =>       / \
+         T,R  X,B            B1   P,R
+                                  /  \
+                                B2   X,B
+        subtree p/b2/x match 1.
+
