@@ -9,3 +9,5 @@ modifier_map Control{ Control_L, Control_R };
 After:
 key <MENU> {  [ Control_R ] };             
 modifier_map Control{ Control_L, Control_R,<MENU> };                    
+
+to get keycode: xev
