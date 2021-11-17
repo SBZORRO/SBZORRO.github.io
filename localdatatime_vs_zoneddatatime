@@ -1,0 +1,25 @@
+LocalDateTime ldt = LocalDateTime.of(2021, 11, 15, 0, 0, 0, 0);
+ZonedDateTime zdt = ZonedDateTime.of(2021, 11, 15, 0, 0, 0, 0, ZoneOffset.of("+8"));
+ZonedDateTime zdt2 = ZonedDateTime.of(2021, 11, 15, 0, 0, 0, 0, ZoneOffset.of("-8"));
+System.out.println(ldt);                                                                        2021-11-15T00:00
+System.out.println(zdt);                                                                        2021-11-15T00:00+08:00
+System.out.println(ldt.toEpochSecond(ZoneOffset.of("+8")));                                     1636905600
+System.out.println(ldt.toEpochSecond(ZoneOffset.of("-8")));                                     1636963200
+System.out.println(zdt.toEpochSecond());                                                        1636905600
+System.out.println(zdt2.toEpochSecond());                                                       1636963200
+
+System.out.println(LocalDateTime.now());                                                        2021-11-17T09:19:51.130
+System.out.println(LocalDateTime.now().atOffset(ZoneOffset.of("+8")));                          2021-11-17T09:19:51.130+08:00
+System.out.println(LocalDateTime.now().atOffset(ZoneOffset.of("-8")));                          2021-11-17T09:19:51.131-08:00
+System.out.println(LocalDateTime.now().atOffset(ZoneOffset.of("+8")).toEpochSecond());          1637111991
+System.out.println(LocalDateTime.now().atOffset(ZoneOffset.of("-8")).toEpochSecond());          1637169591
+
+
+System.out.println(ZonedDateTime.now());                                                        2021-11-17T09:19:51.131+08:00[Asia/Shanghai]
+System.out.println(ZonedDateTime.now().toEpochSecond());                                        1637111991
+System.out.println(ZonedDateTime.now(ZoneOffset.of("+8")));                                     2021-11-17T09:19:51.131+08:00
+System.out.println(ZonedDateTime.now(ZoneOffset.of("-8")));                                     2021-11-16T17:19:51.131-08:00
+System.out.println(ZonedDateTime.now(ZoneOffset.of("+8")).toEpochSecond());                     1637111991
+System.out.println(ZonedDateTime.now(ZoneOffset.of("-8")).toEpochSecond());                     1637111991
+    
+
