@@ -22,4 +22,11 @@ System.out.println(ZonedDateTime.now(ZoneOffset.of("-8")));                     
 System.out.println(ZonedDateTime.now(ZoneOffset.of("+8")).toEpochSecond());                     1637111991
 System.out.println(ZonedDateTime.now(ZoneOffset.of("-8")).toEpochSecond());                     1637111991
     
+DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss[.SSS]");
+LocalDateTime.now().format(dtf)
 
+LocalDateTime ldt = LocalDateTime.parse("2021-11-17 09:19:51.131", dtf);
+ldt.format(dtf22222222222222222222)
+
+LocalDateTime ldt = LocalDateTime.parse(dt, dtf);
+Date out = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
