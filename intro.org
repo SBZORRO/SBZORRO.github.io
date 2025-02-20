@@ -1,0 +1,59 @@
+* Generally intro
+My Name is Liang Hao.
+I am a seasoned programmer with nine years of experience.
+dedicate in Java and IoT industry
+* Education background
+** I was studing aboard in Canada, about 10 years ago, majoring in CS, SE direction.
+** Java has been my primary programming language since I graduated from collage.
+my professor told me that
+I'd better choose one language and use it everywhere and everytime
+I choose Java back then
+
+* Skills
+With many years of experience in Java and IoT.
+I dive into multi-threading, concurrent programming, networking, and TCP/IP protocal suite.
+Im able to use tools like Wireshark and tcpdump to analyze networking problems
+iptable, iproute, are also good cli tools, and im currently learning them
+they help me understand either physical or virtual networking
+
+** Netty
+I have a lot of experience working with Netty,
+studing it's source code,
+using it to implement protocols,
+or building apps based on various protocols.
+*** Netty is an IO multiplexing implementation in Java.
+it's a very cool framework.
+it's directly memory management, it's thread model are outstanding.
+
+* Jobs
+I had three jobs.
+** My 1st job is in education field.
+I developed and maintained OA for an education company.
+consist of:
+approval workflow
+salary calculation
+audition
+attendance
+etc.
+It's many years ago,
+Pure Spring framework, stand-alone tomcat,
+** My 2ed and last job are in IoT industry.
+I am responsible for designing and implementing protocols,
+maintaining MQ between equipment and upper-level apps.
+I mainly use Netty.
+I use it to build TCP/UDP Client/Server.
+I use it to implemente my own MQTT client.
+I use it to work with industry protocols, like ModBus or Serial.
+** My last job also involved 3rd party projects, mostly government and state-owned enterprise.
+Projects I often involved usually Spring ecosystem based,
+SpringBoot save us from XML configuration,
+SpringMVC explor API, Jetty and WebFlux are used occasionly
+SpringCloud privode microservice,
+some others are used whenevery needed.
+* Docker
+I usually deploy Spring-base apps via docker,
+manually writing Java apps bare metal
+I want to know what happened as soon as possible.
+* My future interets are embeded and linux internet stack
+I am currently learning STM32, practing my C skills, getting familiar with system API
+and planning to read Linux source code of internet stack part.

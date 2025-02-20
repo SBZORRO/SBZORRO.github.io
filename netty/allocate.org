@@ -1,0 +1,86 @@
+* PoolThreadLocalCache
+PoolArena<byte[]> heapArena;
+PoolArena<ByteBuffer> directArena;
+
+HeapArena // 32
+DirectArena // 32
+
+arena 1 : 1 SizeClasses
+
+* PoolArea
+
+maxOrder // 0-14
+
+PooledByteBufAllocator parent;
+
+PoolSubpage<T>[] smallSubpagePools; // 39
+
+PoolChunkList<T> q050;
+PoolChunkList<T> q025;
+PoolChunkList<T> q000;
+PoolChunkList<T> qInit;
+PoolChunkList<T> q075;
+PoolChunkList<T> q100;
+
+
+** PoolSubpage
+*** smallSubPagePools
+sizeClass.nSubpages // 39
+PoolSubpage[sizeClass.nSubpages];
+
+** PoolChunkList
+
+qInit <=> q000 <=> q025 <=> q050 <=> q075 <=> q100
+
+usage() = 100 - freeBytes * 100L / chunkSize
+
+* Metric
+PoolChunkListMetric
+PoolArenaMetric
+PoolSubpageMetric
+* PoolThreadLocalCache extends FastThreadLocal<PoolThreadCache>
+
+
+
+
+
+
+
+
+
+
+
+* ByteBuf newDirectBuffer(int initialCapacity, int maxCapacity) 
+PooledByteBufAllocator.newDirectBuffer(int, int) line: 392	
+PooledByteBufAllocator(AbstractByteBufAllocator).directBuffer(int, int) line: 188	
+PooledByteBufAllocator(AbstractByteBufAllocator).directBuffer(int) line: 179	
+PooledByteBufAllocator(AbstractByteBufAllocator).ioBuffer(int) line: 140	
+AdaptiveRecvByteBufAllocator$HandleImpl(DefaultMaxMessagesRecvByteBufAllocator$MaxMessageHandle).allocate(ByteBufAllocator) line: 120	
+NioSocketChannel$NioSocketChannelUnsafe(AbstractNioByteChannel$NioByteUnsafe).read() line: 160	
+NioEventLoop.processSelectedKey(SelectionKey, AbstractNioChannel) line: 788	
+NioEventLoop.processSelectedKeysOptimized() line: 724	
+NioEventLoop.processSelectedKeys() line: 650	
+NioEventLoop.run() line: 562	
+SingleThreadEventExecutor$4.run() line: 997	
+ThreadExecutorMap$2.run() line: 74	
+FastThreadLocalRunnable.run() line: 30	
+FastThreadLocalThread(Thread).run() line: 833	
+
+  
+PooledUnsafeDirectByteBuf.newInstance(int) line: 39	
+PoolArena$DirectArena.newByteBuf(int) line: 720	
+PoolArena$DirectArena(PoolArena<T>).allocate(PoolThreadCache, int, int) line: 125	
+PooledByteBufAllocator.newDirectBuffer(int, int) line: 397	
+PooledByteBufAllocator(AbstractByteBufAllocator).directBuffer(int, int) line: 188	
+PooledByteBufAllocator(AbstractByteBufAllocator).directBuffer(int) line: 179	
+PooledByteBufAllocator(AbstractByteBufAllocator).ioBuffer(int) line: 140	
+AdaptiveRecvByteBufAllocator$HandleImpl(DefaultMaxMessagesRecvByteBufAllocator$MaxMessageHandle).allocate(ByteBufAllocator) line: 120	
+NioSocketChannel$NioSocketChannelUnsafe(AbstractNioByteChannel$NioByteUnsafe).read() line: 160	
+NioEventLoop.processSelectedKey(SelectionKey, AbstractNioChannel) line: 788	
+NioEventLoop.processSelectedKeysOptimized() line: 724	
+NioEventLoop.processSelectedKeys() line: 650	
+NioEventLoop.run() line: 562	
+SingleThreadEventExecutor$4.run() line: 997	
+ThreadExecutorMap$2.run() line: 74	
+FastThreadLocalRunnable.run() line: 30	
+FastThreadLocalThread(Thread).run() line: 833	

@@ -1,0 +1,51 @@
+* Chunk
+4MB
+** 2MB
+** sbrk(2) or mmap(2)
+n * chunk_size
+* small large huge
+** huge
+larger than half of a chunk, and are directly backed by dedicated chunks
+Metadata about huge allocations are stored in a single red-black tree.
+** small large
+chunks are carved into ~page runs~ using the ~binary buddy~ algorithm.
+Runs can be repeatedly split in half to as small as one page,
+page map at the beginning of each chunk.
+*** large
+>  page/2
+<= chunk/2
+*** small
+tiny
+quantum-spaced
+sub-page
+|----------+----------------+--------|
+| Category | Subcategory    | Size   |
+|----------+----------------+--------|
+| Small    | Tiny           | 2 B    |
+|          |                | 4 B    |
+|          |                | 8 B    |
+|          | Quantum-spaced | 16 B   |
+|          |                | 32 B   |
+|          |                | 48 B   |
+|          |                | . . .  |
+|          |                | 480 B  |
+|          |                | 496 B  |
+|          |                | 512 B  |
+|          | Sub-page       | 1 kB   |
+|          |                | 2 kB   |
+|----------+----------------+--------|
+| Large    |                | 4 kB   |
+|          |                | 8 kB   |
+|          |                | 16 kB  |
+|          |                | . . .  |
+|          |                | 256 kB |
+|          |                | 512 kB |
+|          |                | 1 MB   |
+|----------+----------------+--------|
+| Huge     |                | 2 MB   |
+|          |                | 4 MB   |
+|          |                | 6 MB   |
+|          |                | . . .  |
+|----------+----------------+--------|
+Default size classes, assuming runtime defaults, 4 kB pages and a 16 byte quantum.
+* run
