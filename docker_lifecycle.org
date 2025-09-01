@@ -1,0 +1,10 @@
+* Lifecycle
+[[./docker_lifecycle.webp][docker_lifecycle]]
+- Docker CLI → sends create request to dockerd.
+- dockerd → talks to containerd.
+- containerd → uses runc (OCI runtime) to:
+- unshare() namespaces.
+- Mount root filesystem (using overlayfs, bind mounts, volumes).
+- Set up network namespace (via bridge, veth pairs).
+- Apply cgroup limits.
+- execve() the container’s PID 1 process inside that isolated environment.
