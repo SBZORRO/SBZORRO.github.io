@@ -9,7 +9,8 @@
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Your preferred terminal emulator
-set $term foot
+# set $term foot
+set $term kitty
 # Your preferred application launcher
 set $menu wmenu-run
 set $fm thunar
@@ -217,5 +218,11 @@ bar {
     #     inactive_workspace #32323200 #32323200 #5c5c5c
     # }
 }
+
+# No title bar / border for tiling windows
+default_border pixel 1
+
+# No title bar / border for floating windows
+default_floating_border pixel 1
 
 include /etc/sway/config.d/*
