@@ -80,7 +80,8 @@ bindsym $mod+Escape exec kitty
 bindsym $mod+c kill
 
 # start dmenu (a program launcher)
-bindsym $mod+x exec --no-startup-id dmenu_run -i -b -fn "IBM Plex Mono-13"
+# bindsym $mod+x exec --no-startup-id dmenu_run -i -b -fn "IBM Plex Mono-13"
+bindsym $mod+x exec --no-startup-id rofi -show drun
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
